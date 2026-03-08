@@ -1,9 +1,9 @@
 apiVersion: v2
 name: flask-app-config
 description: Configuração GitOps para a API Flask
-version: 1.0.0
+version: 1.0.1
 
 dependencies:
-  - name: helm-base-k8s-app
+  - name: base-k8s-app
     version: "0.1.0"
     repository: "https://wesleysouza.github.io/helm-charts/"
