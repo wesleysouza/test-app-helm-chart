@@ -6,4 +6,4 @@ version: 1.0.0
 dependencies:
   - name: helm-base-k8s-app
     version: "0.1.0"
-    repository: "https://github.com/wesleysouza/helm-charts"
+    repository: "https://wesleysouza.github.io/helm-charts/"

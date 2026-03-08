@@ -10,6 +10,7 @@ spec:
   # Substitua pela URL real do seu repositório de infraestrutura.
   sourceRepos:
     - 'https://github.com/wesleysouza/test-app-helm-chart.git'
+    - 'https://github.com/wesleysouza/helm-charts'
   
   # 2. Segurança de Destino: O ArgoCD só pode implantar recursos nestes namespaces.
   # Isso impede que um desenvolvedor tente fazer deploy no namespace 'kube-system', por exemplo.
