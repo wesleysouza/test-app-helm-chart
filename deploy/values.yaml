@@ -1,0 +1,43 @@
+base-k8s-app:
+  replicaCount: 3
+
+  image:
+    repository: ghcr.io/<seu-usuario>/flask-app
+    # Esta tag será a única coisa alterada pelo seu pipeline de CI no outro repositório
+    tag: "v1.2.4" 
+  
+  service:
+    port: 80
+    targetPort: 5000
+
+  ingress:
+    enabled: true
+    className: "nginx"
+    hosts:
+      - host: api.flaskapp.com.br
+        paths:
+          - path: /
+            pathType: Prefix
+
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "300m"
+      memory: "256Mi"
+
+  env:
+    - name: FLASK_ENV
+      value: "production"
+    - name: WORKERS
+      value: "4"
+
+  livenessProbe:
+    enabled: true
+    path: /healthz
+    port: 5000
+  readinessProbe:
+    enabled: true
+    path: /ready
+    port: 5000

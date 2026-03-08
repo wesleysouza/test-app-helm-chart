@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: flask-app-prod
+  namespace: argocd
+spec:
+  project: teste
+  source:
+    repoURL: 'https://github.com/wesleysouza/test-app-helm-chart.git' # Este repositório de config
+    targetRevision: main
+    path: 'deploy'
+    helm:
+      valueFiles:
+        - values-production.yaml
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: flask-app-prod
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

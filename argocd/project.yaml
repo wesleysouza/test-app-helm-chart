@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: teste
+  namespace: argocd
+spec:
+  description: "Projeto seguro para gerenciamento da aplicacao flask-app"
+  
+  # 1. Segurança de Origem: O ArgoCD só aceita ler manifestos deste repositório Git.
+  # Substitua pela URL real do seu repositório de infraestrutura.
+  sourceRepos:
+    - 'https://github.com/wesleysouza/test-app-helm-chart.git'
+  
+  # 2. Segurança de Destino: O ArgoCD só pode implantar recursos nestes namespaces.
+  # Isso impede que um desenvolvedor tente fazer deploy no namespace 'kube-system', por exemplo.
+  destinations:
+    - namespace: 'flask-app-prod'
+      server: 'https://kubernetes.default.svc'
+    - namespace: 'flask-app-staging' # Caso decida ter um ambiente de testes no mesmo cluster
+      server: 'https://kubernetes.default.svc'
+  
+  # 3. Segurança de Recursos de Cluster (Cluster-scoped)
+  # Permite que o ArgoCD crie apenas Namespaces. Ele não poderá criar ClusterRoles ou 
+  # ClusterRoleBindings, evitando escalonamento de privilégios.
+  clusterResourceWhitelist:
+    - group: ''
+      kind: Namespace
+  
+  # 4. Segurança de Recursos de Namespace (Namespace-scoped)
+  # Omitir esta lista significa permitir todos os recursos dentro do namespace (Deployment, Service, etc.).
+  # Para restrição máxima, você poderia especificar exatamente quais Kinds são permitidos aqui.
+  # namespaceResourceWhitelist:
+  #   - group: 'apps'
+  #     kind: 'Deployment'
+  #   - group: ''
+  #     kind: 'Service'
