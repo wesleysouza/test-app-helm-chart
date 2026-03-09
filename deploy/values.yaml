@@ -2,9 +2,9 @@ base-k8s-app:
   replicaCount: 3
 
   image:
-    repository: nginx
+    repository: docker.io/wesleysouzasci/flask-dummy-app
     # Esta tag será a única coisa alterada pelo seu pipeline de CI no outro repositório
-    tag: "v1.2.4" 
+    tag: "1.0" 
   
   service:
     port: 80
