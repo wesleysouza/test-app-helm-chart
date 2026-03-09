@@ -4,7 +4,7 @@ base-k8s-app:
   image:
     repository: nginx
     # Esta tag será a única coisa alterada pelo seu pipeline de CI no outro repositório
-    tag: 
+    tag: "stable"
   
   service:
     port: 80
