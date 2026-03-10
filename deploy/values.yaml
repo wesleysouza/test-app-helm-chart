@@ -2,13 +2,13 @@ base-k8s-app:
   replicaCount: 3
 
   image:
-    repository: nginx
+    repository: nginxinc/nginx-unprivileged
     # Esta tag será a única coisa alterada pelo seu pipeline de CI no outro repositório
-    tag: "stable"
+    tag: "alpine3.23-perl"
   
   service:
-    port: 80
-    targetPort: 80
+    port: 8080
+    targetPort: 8080
 
   securityContext:
     allowPrivilegeEscalation: true
@@ -41,8 +41,8 @@ base-k8s-app:
   livenessProbe:
     enabled: true
     path: /
-    port: 80
+    port: 8080
   readinessProbe:
     enabled: true
     path: /
-    port: 80
+    port: 8080
