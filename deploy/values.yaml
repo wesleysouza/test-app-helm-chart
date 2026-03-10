@@ -13,6 +13,7 @@ base-k8s-app:
   securityContext:
   allowPrivilegeEscalation: false
   readOnlyRootFilesystem: false
+  runAsUser: 101
   capabilities:
     drop:
       - ALL
