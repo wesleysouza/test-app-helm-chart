@@ -11,7 +11,7 @@ base-k8s-app:
     targetPort: 80
 
   securityContext:
-    allowPrivilegeEscalation: false
+    allowPrivilegeEscalation: true
     readOnlyRootFilesystem: false
     runAsUser: 101
 
