@@ -14,9 +14,6 @@ base-k8s-app:
     allowPrivilegeEscalation: true
     readOnlyRootFilesystem: false
     runAsUser: 101
-    capabilities:
-      cap_add:
-        - ALL
 
   ingress:
     enabled: true
