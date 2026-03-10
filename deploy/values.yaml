@@ -18,6 +18,9 @@ base-k8s-app:
   ingress:
     enabled: true
     className: "nginx"
+    annotations: {
+      nginx.ingress.kubernetes.io/rewrite-target: /
+    }
     hosts:
       - host: api.flaskapp.com.br
         paths:
