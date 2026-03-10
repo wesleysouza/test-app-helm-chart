@@ -10,6 +10,13 @@ base-k8s-app:
     port: 80
     targetPort: 80
 
+  securityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: false
+  capabilities:
+    drop:
+      - ALL
+
   ingress:
     enabled: true
     className: "nginx"
