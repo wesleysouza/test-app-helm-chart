@@ -1,22 +1,23 @@
-replicaCount: 3
+argorollouts-k8s-app:
+  replicaCount: 3
 
-image:
-  repository: nginxinc/nginx-unprivileged
-  tag: 1.28.1
+  image:
+    repository: nginxinc/nginx-unprivileged
+    tag: 1.28.1
 
-service:
-  type: ClusterIP
-  port: 80
+  service:
+    type: ClusterIP
+    port: 80
 
-ingress:
-  host: app.exemplo.com
-  annotations:
-    kubernetes.io/ingress.class: nginx
+  ingress:
+    host: app.exemplo.com
+    annotations:
+      kubernetes.io/ingress.class: nginx
 
-rollout:
-  steps:
-    - setWeight: 20
-    - pause: {} # Pausa manual
-    - setWeight: 50
-    - pause: {} # Pausa manual
-    - setWeight: 100
+  rollout:
+    steps:
+      - setWeight: 20
+      - pause: {} # Pausa manual
+      - setWeight: 50
+      - pause: {} # Pausa manual
+      - setWeight: 100
