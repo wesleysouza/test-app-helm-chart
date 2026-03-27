@@ -5,5 +5,5 @@ version: 1.2.9
 
 dependencies:
   - name: argorollouts-k8s-app
-    version: "0.0.3"
+    version: "0.0.4"
     repository: "https://wesleysouza.github.io/helm-charts/"
