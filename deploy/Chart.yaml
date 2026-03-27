@@ -4,6 +4,6 @@ description: Configuração GitOps para a API Flask
 version: 1.2.9
 
 dependencies:
-  - name: base-k8s-app
-    version: "0.1.3"
+  - name: argorollouts-k8s-app
+    version: "0.0.2"
     repository: "https://wesleysouza.github.io/helm-charts/"

@@ -1,51 +1,22 @@
-base-k8s-app:
-  replicaCount: 3
+replicaCount: 3
 
-  image:
-    repository: nginxinc/nginx-unprivileged
-    # Esta tag será a única coisa alterada pelo seu pipeline de CI no outro repositório
-    tag: "alpine3.23-perl"
-  
-  service:
-    port: 8080
-    targetPort: 8080
+image:
+  repository: nginx
+  tag: latest
 
-  securityContext:
-    allowPrivilegeEscalation: true
-    readOnlyRootFilesystem: false
-    runAsUser: 101
+service:
+  type: ClusterIP
+  port: 80
 
-  ingress:
-    enabled: true
-    className: "nginx"
-    annotations: {
-      nginx.ingress.kubernetes.io/rewrite-target: /
-    }
-    hosts:
-      - host: api.flaskapp.com.br
-        paths:
-          - path: /
-            pathType: Prefix
+ingress:
+  host: app.exemplo.com
+  annotations:
+    kubernetes.io/ingress.class: nginx
 
-  resources:
-    requests:
-      cpu: "100m"
-      memory: "128Mi"
-    limits:
-      cpu: "300m"
-      memory: "256Mi"
-
-  env:
-    - name: FLASK_ENV
-      value: "production"
-    - name: WORKERS
-      value: "4"
-
-  livenessProbe:
-    enabled: true
-    path: /
-    port: 8080
-  readinessProbe:
-    enabled: true
-    path: /
-    port: 8080
+rollout:
+  steps:
+    - setWeight: 20
+    - pause: {} # Pausa manual
+    - setWeight: 50
+    - pause: {} # Pausa manual
+    - setWeight: 100
