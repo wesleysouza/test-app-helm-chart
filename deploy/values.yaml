@@ -1,8 +1,8 @@
 replicaCount: 3
 
 image:
-  repository: nginx
-  tag: latest
+  repository: nginxinc/nginx-unprivileged
+  tag: 1.25-alpine
 
 service:
   type: ClusterIP
